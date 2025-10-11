@@ -2,10 +2,10 @@ import { Text } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
-export default function Explore() {
+export default function CreateStory() {
   return (
     <SafeAreaView>
-      <Text>Explore</Text>
+      <Text>Create story</Text>
     </SafeAreaView>
   )
 }
