@@ -6,8 +6,11 @@ export default function Home() {
   return (
     // Only need bottom safearea since navbar already is withing safe area and this view is rendered below
     <SafeAreaView edges={['bottom']}>
-      <View className='min-h-full bg-bg-purple p-4 gap-2'>
-        <Text className='text-3xl font-bold'>Home</Text>
+      <View className='min-h-full bg-bg-purple p-5'>
+        <View className='flex-row gap-3 items-center'>
+          <Text className='text-xl'>Hej igen</Text>
+          <Text className='text-3xl font-extrabold text-primary'>Sofie🌈</Text>
+        </View>
       </View>
     </SafeAreaView>
   )
