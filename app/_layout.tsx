@@ -12,9 +12,9 @@ export default function RootLayout() {
   const TabBarIcon = ({ focused, icon, title }: any) => (
     <View className='flex items-center justify-center min-h-full gap-1 mt-12 min-w-20'>
       <Image source={icon} width={25} height={25} tintColor={focused ? 'purple' : 'black'} />
-      <Text className={focused ? 'text-sm font-bold text-purple-500' : 'text-sm font-bold text-black'}>{title}</Text>
+      <Text className={focused ? 'text-sm font-bold text-primary' : 'text-sm font-bold text-black'}>{title}</Text>
       {focused && (
-        <View className='w-8 h-1 rounded-t-full bg-purple-600'></View>
+        <View className='w-8 h-1 rounded-t-full bg-primary'></View>
       )}
     </View>
   )
