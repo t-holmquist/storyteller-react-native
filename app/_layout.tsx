@@ -1,8 +1,9 @@
-import { Image, Text, TouchableOpacity, View } from 'react-native';
+import { Image, Text, View } from 'react-native';
 import '../global.css';
 
 import { Tabs } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import Header from 'components/Header';
 
 
 export default function RootLayout() {
@@ -26,10 +27,7 @@ export default function RootLayout() {
     <>
     {/* Safe area view only needs to be at the top since the header is at the top. Otherwise it would create whitespace below for the other screens */}
       <SafeAreaView edges={['top']}>
-        <View className='flex-row justify-between items-center px-5 p-2 border border-gray-300'>
-          <Text className='text-xl font-extrabold'>StoryTeller</Text>
-          <TouchableOpacity className='border w-12 h-12 rounded-full'></TouchableOpacity>
-        </View>
+        <Header />
       </SafeAreaView>
       <Tabs
         screenOptions={{
