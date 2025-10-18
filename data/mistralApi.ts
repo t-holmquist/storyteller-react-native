@@ -6,11 +6,14 @@ import { Mistral } from '@mistralai/mistralai';
 const client = new Mistral({ apiKey: process.env.EXPO_PUBLIC_MISTRAL_API_KEY });
 
 export async function mistralTest() {
+
+    // Sends an array of chat messages to mistral
     const chatResponse = await client.chat.complete({
         model: "mistral-large-latest",
         messages: [{role: 'user', content: 'What is the best French cheese?'}]
     });
 
+    // Logs the response -> Later this should be returned
     console.log('Chat:', chatResponse.choices?.[0]?.message?.content);
 
 }
