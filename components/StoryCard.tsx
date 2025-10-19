@@ -5,7 +5,7 @@ export const StoryCard = ({ title, image }: { title: string, image: string }) =>
   return (
 
     <View>
-      <View className="bg-white gap-2 rounded-xl border border-border items-center w-[180px] h-[280px]">
+      <View className="bg-white gap-2 rounded-xl border border-border items-center w-[180px] h-[270px]">
 
         {/* Billede: Fast størrelse, afrunding, margin-bund. */}
         <Image

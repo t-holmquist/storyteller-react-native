@@ -12,7 +12,7 @@ export default function ContinueStoryCard() {
           {/* Progress bar */}
           <ProgressBar />
           <View className='h-3'></View>
-          <TouchableOpacity className='bg-accent rounded-full px-4 py-2 flex items-center w-32'>
+          <TouchableOpacity className='bg-black rounded-full px-4 py-2 flex items-center w-32'>
             <Text className='text-white'>Fortsæt</Text>
           </TouchableOpacity>
         </View>
