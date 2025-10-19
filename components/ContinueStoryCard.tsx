@@ -1,6 +1,7 @@
 import { View, Text, TouchableOpacity, Image } from 'react-native'
 import React from 'react'
 import ProgressBar from './ProgressBar'
+import { IMAGES } from 'data/images'
 
 export default function ContinueStoryCard() {
   return (
@@ -15,7 +16,7 @@ export default function ContinueStoryCard() {
             <Text className='text-white'>Fortsæt</Text>
           </TouchableOpacity>
         </View>
-        <Image className='rounded-lg flex-shrink h-32' source={require('../assets/dragon.webp')} />
+        <Image className='rounded-lg flex-shrink h-32' source={IMAGES.dragon} />
       </View>
     </View>
   )
