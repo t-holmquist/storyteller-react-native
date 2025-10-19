@@ -1,23 +1,22 @@
 import { Text, View } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import {mistralTest} from '../data/mistralApi'
-import AudioPlayer from 'components/Audioplayer'
+import ContinueStoryCard from 'components/ContinueStoryCard'
 
 export default function Home() {
-
-
-  // Test Mistral call here
 
   return (
     // Only need bottom safearea since navbar already is withing safe area and this view is rendered below
     <SafeAreaView edges={['bottom']}>
-      <View className='min-h-full bg-bg-purple p-5'>
+      <View className='min-h-full bg-bg-purple p-5 gap-5'>
         <View className='flex-row gap-3 items-center'>
           <Text className='text-xl'>Hej igen</Text>
           <Text className='text-3xl font-extrabold text-primary'>Sofie og far🌈</Text>
         </View>
-        <AudioPlayer />
+        <View className='gap-2'>
+          <Text className='text-xl font-bold'>Fortsæt historien</Text>
+          <ContinueStoryCard />
+        </View>
       </View>
     </SafeAreaView>
   )
