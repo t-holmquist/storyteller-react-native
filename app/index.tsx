@@ -32,6 +32,7 @@ export default function Home() {
             renderItem={({ item }) => (
               <StoryCard title={item.title} image={item.image} />
             )}
+            keyExtractor={(item) => item.id.toString()}
           />
         </View>
         <TouchableOpacity className='bg-accent rounded-full px-4 py-2 flex items-center w-48 self-center'>

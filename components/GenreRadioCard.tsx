@@ -1,12 +1,12 @@
 import React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 
-export const GenreRadioCard = ({ title, icon, selected, onSelect }) => {
+export const GenreRadioCard = ({ title, icon, selected, onSelect } : any) => {
   return (
     <TouchableOpacity
       onPress={onSelect}
       activeOpacity={0.8}
-      className="bg-[#fcfcfc] rounded-2xl p-2 items-center justify-center m-2 w-[120px] h-[140px] relative shadow-md"
+      className="bg-white rounded-2xl p-2 items-center justify-center w-[120px] h-[140px] relative shadow-md"
       style={{
         shadowColor: "#000",
         shadowOffset: { width: 0, height: 2 },
@@ -27,7 +27,7 @@ export const GenreRadioCard = ({ title, icon, selected, onSelect }) => {
       </View>
 
       {/* Genre titel */}
-      <Text className="font-bold mt-2 text-center">{title}</Text>
+      <Text className="font-bold text-lg text-center">{title}</Text>
     </TouchableOpacity>
   );
 };
