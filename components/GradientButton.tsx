@@ -2,7 +2,8 @@ import React from "react";
 import { Pressable, Text, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
-export const GradientButton = ({ colors, onPress, text, icon }) => {
+export const GradientButton = ({ colors, onPress, text, icon } : 
+  {colors: readonly [string, string, ...string[]], onPress?: () => void, text: string, icon?: any }) => {
   return (
     <View className="flex-1 items-center mb-12 bg-gray-100">
       <Pressable

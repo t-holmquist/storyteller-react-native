@@ -1,8 +1,10 @@
-import { Text, View } from 'react-native'
+import { FlatList, Text, View } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import ContinueStoryCard from 'components/ContinueStoryCard'
 import { StoryCard } from 'components/StoryCard'
+import { PREVIOUS_STORIES } from 'data/mockData'
+import { GradientButton } from 'components/GradientButton'
 
 export default function Home() {
 
@@ -22,7 +24,15 @@ export default function Home() {
         {/* Read again section */}
         <View className='gap-2'>
           <Text className='text-xl font-bold'>Læs igen</Text>
-          <StoryCard title='De to venner gik en tur' image="dragon" />
+          <FlatList
+          contentContainerClassName='gap-4'
+          horizontal={true}
+          data={PREVIOUS_STORIES}
+          // Returns a ListRenderItem with a property of Item which then contains the objects
+          renderItem={({item}) => (
+            <StoryCard title={item.title} image={item.image} />
+          )}
+          />
         </View>
       </View>
     </SafeAreaView>
