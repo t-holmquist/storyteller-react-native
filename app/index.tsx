@@ -30,7 +30,7 @@ export default function Home() {
               data={PREVIOUS_STORIES}
               // Returns a ListRenderItem with a property of Item which then contains the objects
               renderItem={({ item }) => (
-                <StoryCard title={item.title} image={item.image} />
+                <StoryCard buttonTitle='Læs igen' title={item.title} image={item.image} />
               )}
               keyExtractor={(item) => item.id.toString()}
             />
