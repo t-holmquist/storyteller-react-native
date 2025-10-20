@@ -11,9 +11,9 @@ export const getAudio = async () => {
     // Gets a blob object back from openai
     const mp3 = await openai.audio.speech.create({
         model: "gpt-4o-mini-tts",
-        voice: "coral",
-        input: "Today is a wonderful day to build something people love!",
-        instructions: "Speak in a cheerful and positive tone.",
+        voice: "shimmer",
+        input: "I dag er en dejlig dag",
+        instructions: "Speak in danish",
     });
 
     // Converting it to an buffer object
