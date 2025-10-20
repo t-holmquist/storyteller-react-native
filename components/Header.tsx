@@ -3,7 +3,7 @@ import React from 'react'
 
 export default function Header() {
     return (
-        <View className='flex-row justify-between items-center px-3 border-b border-gray-300'>
+        <View className='flex-row justify-between items-center px-3 border-b bg-white border-gray-300'>
             <View className='flex-row items-center gap-2'>
                 <Image className='h-20 w-12' source={require("../assets/logo.png")} />
                 <Text className='font-bold text-sm'>StoryTeller</Text>

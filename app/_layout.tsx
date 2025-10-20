@@ -26,7 +26,7 @@ export default function RootLayout() {
     // Global tab settings.
     <>
     {/* Safe area view only needs to be at the top since the header is at the top. Otherwise it would create whitespace below for the other screens */}
-      <SafeAreaView edges={['top']}>
+      <SafeAreaView className='bg-white' edges={['top']}>
         <Header />
       </SafeAreaView>
       <Tabs
