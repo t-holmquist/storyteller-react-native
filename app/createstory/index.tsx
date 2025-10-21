@@ -5,6 +5,7 @@ import { GenreSelector } from 'components/GenreSelector'
 import { StoryLengthSelector } from 'components/StoryLengthSelector'
 import { KeyWordInput } from 'components/KeyWordInput'
 import { VoiceSelector } from 'components/VoiceSelector'
+import { PrimaryButton } from 'components/PrimaryButton'
 
 export default function CreateStory() {
 
@@ -38,9 +39,7 @@ export default function CreateStory() {
             <Text className='text-xl font-bold'>Skriv ord til din historie💬</Text>
             <KeyWordInput placeholder='Fx - drager, venner, rumskib, katte' />
           </View>
-          <TouchableOpacity className='bg-accent rounded-full px-4 py-2 flex items-center w-48 self-center'>
-            <Text className='text-white text-xl font-bold'>Lav din historie</Text>
-          </TouchableOpacity>
+          <PrimaryButton text='Lav din historie'/>
         </View>
       </ScrollView>
     </SafeAreaView>
