@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import ContinueStoryCard from 'components/ContinueStoryCard'
 import { StoryCard } from 'components/StoryCard'
 import { PREVIOUS_STORIES } from 'data/mockData'
+import { PrimaryButton} from 'components/PrimaryButton'
 
 export default function Home() {
 
@@ -35,9 +36,10 @@ export default function Home() {
               keyExtractor={(item) => item.id.toString()}
             />
           </View>
-          <TouchableOpacity className='bg-accent rounded-full px-4 py-2 flex items-center w-48 self-center'>
-            <Text className='text-white text-xl font-bold'>Lav ny historie</Text>
-          </TouchableOpacity>
+
+          <PrimaryButton
+            text="Lav en historie"
+          />
         </View>
       </ScrollView>
     </SafeAreaView>
