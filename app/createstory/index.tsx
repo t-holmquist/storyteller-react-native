@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { GenreSelector } from 'components/GenreSelector'
 import { StoryLengthSelector } from 'components/StoryLengthSelector'
+import { KeyWordInput } from 'components/KeyWordInput'
 
 export default function CreateStory() {
 
@@ -21,10 +22,15 @@ export default function CreateStory() {
             <Text className='text-xl font-bold'>Vælg et tema📚</Text>
             <GenreSelector setGenre={setGenre} />
           </View>
-          {/* Another section */}
+          {/* Storylengthselector */}
           <View className='gap-4'>
             <Text className='text-xl font-bold'>Vælg længde på historie⌛</Text>
             <StoryLengthSelector />
+          </View>
+          {/* Keyword input */}
+          <View className='gap-4'>
+            <Text className='text-xl font-bold'>Skriv ord til din historie💬</Text>
+            <KeyWordInput placeholder='Fx - drager, venner, rumskib, katte' />
           </View>
           <TouchableOpacity className='bg-accent rounded-full px-4 py-2 flex items-center w-48 self-center'>
             <Text className='text-white text-xl font-bold'>Lav din historie</Text>
