@@ -42,7 +42,7 @@ export const GenreSelector = ({ setGenre }:
             <TouchableOpacity
               onPress={() => handleSetGenre(item.id)}
               activeOpacity={0.8}
-              className={`${selected === item.id && 'border-accent'} bg-white border-border border rounded-2xl p-8 items-center justify-center relative shadow-md`}
+              className={`${selected === item.id ? 'border-accent' : 'border-border'} bg-white border rounded-2xl p-8 items-center justify-center relative shadow-md`}
               style={{
                 shadowColor: "#000",
                 shadowOffset: { width: 0, height: 2 },
