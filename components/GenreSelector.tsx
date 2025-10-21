@@ -41,7 +41,7 @@ export const GenreSelector = ({ setGenre }:
           <View className="flex-grow">
             <TouchableOpacity
               onPress={() => handleSetGenre(item.id)}
-              activeOpacity={0.8}
+              activeOpacity={1}
               className={`${selected === item.id ? 'border-accent' : 'border-border'} bg-white border rounded-2xl p-8 items-center justify-center relative shadow-md`}
               style={{
                 shadowColor: "#000",
@@ -62,7 +62,7 @@ export const GenreSelector = ({ setGenre }:
               </View> */}
 
               {/* Genre titel */}
-              <Text className="font-bold text-lg text-center">{item.title}</Text>
+              <Text className="text-lg text-center">{item.title}</Text>
             </TouchableOpacity>
           </View>
         )}
