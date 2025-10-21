@@ -11,7 +11,7 @@ export default function RootLayout() {
 
   // Component that dynamically sets tabbaricons for the different screens
   const TabBarIcon = ({ focused, icon, title }: any) => (
-    <View className='flex items-center justify-center min-h-full gap-1 mt-12 min-w-20'>
+    <View className='flex items-center justify-center min-h-full gap-1 mt-12 min-w-24'>
       <Image source={icon} width={25} height={25} tintColor={focused ? 'purple' : 'black'} />
       <Text className={focused ? 'text-sm font-bold text-primary' : 'text-sm font-bold text-black'}>{title}</Text>
       {focused && (
@@ -57,19 +57,19 @@ export default function RootLayout() {
           // Name of the actual route based on file-system
           name='index'
           options={{
-            tabBarIcon: ({ focused }) => <TabBarIcon title="Home" icon={require('../assets/icons/house.png')} focused={focused} />
+            tabBarIcon: ({ focused }) => <TabBarIcon title="Hjem" icon={require('../assets/icons/house.png')} focused={focused} />
           }}
         />
         <Tabs.Screen
           name='createstory/index'
           options={{
-            tabBarIcon: ({ focused }) => <TabBarIcon title="Create" icon={require('../assets/icons/circle-plus.png')} focused={focused} />
+            tabBarIcon: ({ focused }) => <TabBarIcon title="Lav historie" icon={require('../assets/icons/circle-plus.png')} focused={focused} />
           }}
         />
         <Tabs.Screen
           name='explore/index'
           options={{
-            tabBarIcon: ({ focused }) => <TabBarIcon title="Explore" icon={require('../assets/icons/search.png')} focused={focused} />
+            tabBarIcon: ({ focused }) => <TabBarIcon title="Udforsk" icon={require('../assets/icons/search.png')} focused={focused} />
           }}
         />
       </Tabs>

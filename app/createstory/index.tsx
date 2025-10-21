@@ -18,12 +18,12 @@ export default function CreateStory() {
           </View>
           {/* Genre selection. Gets the setter state function */}
           <View className='gap-2'>
-            <Text className='text-xl font-bold'>Vælg et tema:</Text>
+            <Text className='text-xl font-bold'>Vælg et tema📚</Text>
             <GenreSelector setGenre={setGenre} />
           </View>
           {/* Another section */}
           <View className='gap-2'>
-            <Text className='text-xl font-bold'>Læs en god historie igen</Text>
+            <Text className='text-xl font-bold'>Vælg længde på historie⌛</Text>
             
           </View>
           <TouchableOpacity className='bg-accent rounded-full px-4 py-2 flex items-center w-48 self-center'>
