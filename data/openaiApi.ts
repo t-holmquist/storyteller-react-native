@@ -6,7 +6,7 @@ const openai = new OpenAI({
     apiKey: process.env.EXPO_PUBLIC_OPENAI_API_KEY
 });
 
-export const getAudio = async () => {
+export const getAudioFromOpenai = async () => {
 
     // Gets a blob object back from openai
     const mp3 = await openai.audio.speech.create({
