@@ -12,7 +12,7 @@ export default function Home() {
     // Only need bottom safearea since navbar already is withing safe area and this view is rendered below
     <SafeAreaView edges={['bottom']}>
       <ScrollView className='mb-20'>
-        <View className='min-h-full bg-bg-purple py-7 px-4 gap-4'>
+        <View className='min-h-full bg-bg-purple py-6 px-4 gap-4'>
           <View className='flex-row gap-3 items-center mb-2'>
             <Text className='text-xl'>Hej igen</Text>
             <Text className='text-3xl font-extrabold text-primary'>Sofie og far🌈</Text>

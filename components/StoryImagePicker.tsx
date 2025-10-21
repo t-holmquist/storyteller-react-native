@@ -35,7 +35,7 @@ export default function StoryImagePicker() {
         ) : (
           <>
             <Image source={require('../assets/icons/image.png')} />
-            <Text className='font-semibold'>Upload dit billede her</Text>
+            <Text className='font-semibold'>Vælg dit billede</Text>
           </>
         )}
       </TouchableOpacity>

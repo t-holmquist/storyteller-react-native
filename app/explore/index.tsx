@@ -1,5 +1,5 @@
 import { FlatList, ScrollView, Text, View } from 'react-native'
-import React, { useState } from 'react'
+import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { PREVIOUS_STORIES } from 'data/mockData'
 import { StoryCard } from 'components/StoryCard'
@@ -7,11 +7,11 @@ import { KeyWordInput } from 'components/KeyWordInput'
 import { CategorySelector } from 'components/CategorySelector'
 
 export default function Explore() {
-  const [genre, setGenre] = useState('')
+
   return (
     <SafeAreaView edges={['bottom']}>
       <ScrollView className='mb-20'>
-        <View className='min-h-full bg-bg-green py-7 px-4 gap-6'>
+        <View className='min-h-full bg-bg-green py-6 px-4 gap-6'>
           <View className='gap-3 mb-2'>
             <Text className='text-3xl font-extrabold text-primary'>Find andres historier📚</Text>
             <View className='border border-border p-2 rounded-xl bg-bg-purple'>
@@ -22,7 +22,7 @@ export default function Explore() {
             <Text className='text-xl font-bold'>Søg på andres historier</Text>
             {/* Her kan være et komponent */}
             <KeyWordInput
-              placeholder='Søg' />
+              placeholder='Fx - Rumskibe' />
           </View>
 
           <View className='gap-4'>
