@@ -26,6 +26,7 @@ export default function Home() {
           <View className='gap-2'>
             <Text className='text-xl font-bold'>Læs en god historie igen</Text>
             <FlatList
+              showsHorizontalScrollIndicator={false}
               contentContainerClassName='gap-4'
               horizontal={true}
               data={PREVIOUS_STORIES}

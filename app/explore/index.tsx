@@ -33,6 +33,7 @@ export default function Explore() {
           <View className='gap-2'>
             <Text className='text-xl font-bold'>Dette er de historier der søges frem</Text>
             <FlatList
+            showsHorizontalScrollIndicator={false}
               contentContainerClassName='gap-4'
               horizontal={true}
               data={PREVIOUS_STORIES}

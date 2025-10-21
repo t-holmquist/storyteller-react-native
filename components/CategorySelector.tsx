@@ -24,8 +24,7 @@ export const CategorySelector = () => {
         // Another option is an outer Flatlist with all the different sections as renderitems.
         horizontal={true}
         contentContainerClassName='gap-4'
-      
-        
+        showsHorizontalScrollIndicator={false}
         data={GENRE}
         // Returns a ListRenderItem with a property of Item which then contains the objects
         renderItem={({ item }) => (
