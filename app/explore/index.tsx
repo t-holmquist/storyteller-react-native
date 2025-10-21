@@ -7,14 +7,16 @@ import { KeyWordInput } from 'components/KeyWordInput'
 import { CategorySelector } from 'components/CategorySelector'
 
 export default function Explore() {
-   const [genre, setGenre] = useState('')
+  const [genre, setGenre] = useState('')
   return (
     <SafeAreaView edges={['bottom']}>
       <ScrollView className='mb-20'>
-        <View className='min-h-full bg-bg-green py-7 px-4 gap-4'>
+        <View className='min-h-full bg-bg-green py-7 px-4 gap-6'>
           <View className='gap-3 mb-2'>
             <Text className='text-3xl font-extrabold text-primary'>Find andres historier📚</Text>
-            <Text className='text-sm'>Vælg emner til din historie og tryk på skab historie. Jeg er spændt på, hvad du finder på!</Text>
+            <View className='border border-border p-2 rounded-xl bg-bg-purple'>
+              <Text className='text-sm'>Her kan du finde andre spændende historier. Søg efter et tema eller vælg en kategori</Text>
+            </View>
           </View>
           <View className='gap-2'>
             <Text className='text-xl font-bold'>Søg på andres historier</Text>
@@ -23,7 +25,7 @@ export default function Explore() {
               placeholder='Søg' />
           </View>
 
-             <View className='gap-4'>
+          <View className='gap-4'>
             <Text className='text-xl font-bold'>Vælg et tema📚</Text>
             <CategorySelector />
           </View>
@@ -33,7 +35,7 @@ export default function Explore() {
           <View className='gap-2'>
             <Text className='text-xl font-bold'>Dette er de historier der søges frem</Text>
             <FlatList
-            showsHorizontalScrollIndicator={false}
+              showsHorizontalScrollIndicator={false}
               contentContainerClassName='gap-4'
               horizontal={true}
               data={PREVIOUS_STORIES}
