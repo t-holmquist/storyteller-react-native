@@ -1,0 +1,41 @@
+import { VOICES } from "data/mockData";
+import React, { useState } from "react";
+import { View, Text, TouchableOpacity, FlatList } from "react-native";
+
+export const VoiceSelector = () => {
+
+    // Keeps track of selected card
+    const [selected, setSelected] = useState(0)
+
+    return (
+
+        <FlatList
+            horizontal={true}
+            contentContainerClassName='gap-4'
+            data={VOICES}
+            // Returns a ListRenderItem with a property of Item which then contains the objects
+            renderItem={({ item }) => (
+                <View>
+                    <TouchableOpacity
+                        onPress={() => setSelected(item.id)}
+                        activeOpacity={1}
+                        className={`${selected === item.id ? 'border-accent' : 'border-border'} bg-white border py-2 px-4 rounded-xl items-center justify-center`}
+                        style={{
+                            shadowColor: "#000",
+                            shadowOffset: { width: 0, height: 2 },
+                            shadowOpacity: 0.1,
+                            shadowRadius: 4,
+                            elevation: 3,
+                        }}
+                    >
+
+                        {/* Genre titel */}
+                        <Text className="text-lg text-center">{item.title}</Text>
+                    </TouchableOpacity>
+                </View>
+            )}
+            keyExtractor={(item) => item.id.toString()}
+        />
+
+    );
+};

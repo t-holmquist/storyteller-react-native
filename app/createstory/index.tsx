@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { GenreSelector } from 'components/GenreSelector'
 import { StoryLengthSelector } from 'components/StoryLengthSelector'
 import { KeyWordInput } from 'components/KeyWordInput'
+import { VoiceSelector } from 'components/VoiceSelector'
 
 export default function CreateStory() {
 
@@ -11,7 +12,7 @@ export default function CreateStory() {
 
   return (
     <SafeAreaView edges={['bottom']}>
-      <ScrollView>
+      <ScrollView className='mb-20'>
         <View className='min-h-full bg-bg-sand py-7 px-4 gap-4'>
           <View className='gap-3 mb-2'>
             <Text className='text-3xl font-extrabold text-primary'>Lad os være kreative✍️</Text>
@@ -26,6 +27,11 @@ export default function CreateStory() {
           <View className='gap-4'>
             <Text className='text-xl font-bold'>Vælg længde på historie⌛</Text>
             <StoryLengthSelector />
+          </View>
+          {/* Voice selector */}
+          <View className='gap-4'>
+            <Text className='text-xl font-bold'>Vælg stemmen til oplæsning🎤</Text>
+            <VoiceSelector />
           </View>
           {/* Keyword input */}
           <View className='gap-4'>

@@ -21,3 +21,10 @@ export const STORYLENGTH = [
     {id: 1, length: '10 minutter'},
     {id: 2, length: '15 minutter'},
 ];
+
+// Genre mock data
+export const VOICES = [
+    {id: 0, title: 'Coral'},
+    {id: 1, title: 'Onyx'},
+    {id: 2, title: 'Shimmer'},
+];
