@@ -32,6 +32,11 @@ export default function CreateStory() {
             <Text className='text-xl font-semibold'>Vælg et tema📚</Text>
             <GenreSelector setGenre={setGenre} />
           </View>
+          {/* Keyword input */}
+          <View className='gap-4'>
+            <Text className='text-xl font-semibold'>Skriv ord til din historie💬</Text>
+            <KeyWordInput placeholder='Fx - drager, venner, rumskib, katte' />
+          </View>
           {/* Storylengthselector */}
           <View className='gap-4'>
             <Text className='text-xl font-semibold'>Vælg længde på historie⌛</Text>
@@ -41,11 +46,6 @@ export default function CreateStory() {
           <View className='gap-4'>
             <Text className='text-xl font-semibold'>Vælg stemmen til oplæsning🎤</Text>
             <VoiceSelector />
-          </View>
-          {/* Keyword input */}
-          <View className='gap-4'>
-            <Text className='text-xl font-semibold'>Skriv ord til din historie💬</Text>
-            <KeyWordInput placeholder='Fx - drager, venner, rumskib, katte' />
           </View>
           <PrimaryButton text='Lav din historie' />
         </View>
