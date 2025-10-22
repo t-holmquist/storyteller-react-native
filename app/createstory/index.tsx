@@ -1,4 +1,4 @@
-import { ScrollView, Text, TouchableOpacity, View } from 'react-native'
+import { ScrollView, Text, View } from 'react-native'
 import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { GenreSelector } from 'components/GenreSelector'
@@ -11,6 +11,7 @@ import StoryImagePicker from 'components/StoryImagePicker'
 export default function CreateStory() {
 
   const [genre, setGenre] = useState('')
+  const [analyzedImageText, setAnalyzedImageText] = useState('')
 
   return (
     <SafeAreaView edges={['bottom']}>
@@ -25,7 +26,7 @@ export default function CreateStory() {
           {/* Image picker section */}
           <View className='gap-4'>
             <Text className='text-xl font-semibold'>Tag et billede af dit legetøj🧸</Text>
-            <StoryImagePicker />
+            <StoryImagePicker setAnalyzedImageText={setAnalyzedImageText} />
           </View>
           {/* Genre selection. Gets the setter state function */}
           <View className='gap-4'>

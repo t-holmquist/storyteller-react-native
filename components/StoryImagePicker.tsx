@@ -1,27 +1,48 @@
 import { useState } from 'react';
 import { Image, View, Text, TouchableOpacity, ActivityIndicator } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
+import { CheckImage } from 'data/mistralApi';
 
-export default function StoryImagePicker() {
+export default function StoryImagePicker(
+  { setAnalyzedImageText }:
+    { setAnalyzedImageText: React.Dispatch<React.SetStateAction<string>> }
+) {
   const [image, setImage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const pickImage = async () => {
     setIsLoading(true)
 
-    // No permissions request is necessary for launching the image library
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ['images', 'videos'],
-      allowsEditing: true,
-      aspect: [4, 3],
-      quality: 1,
-    });
+    try {
+      // No permissions request is necessary for launching the image library
+      let result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ['images', 'videos'],
+        allowsEditing: true,
+        // Get the image in base64 format so that we can call mistral vision model
+        // Which expect that format
+        base64: true,
+        aspect: [4, 3],
+        quality: 1,
+      });
 
-    if (!result.canceled) {
-      setImage(result.assets[0].uri);
+      // If the user succesfully chose an image then set the image uri
+      if (!result.canceled) {
+        setImage(result.assets[0].uri);
+
+        // CALLS THE MISTRAL VISION MODEL HERE
+        // Give the Mistral vision model function "CheckImage" the base64 image to return its content
+        const base64 = result.assets[0].base64;
+        if (typeof base64 === 'string') {
+          const checkImageResponse = await CheckImage(base64);
+          // Set the analyzedimage state so that the createstory component can use it to create the story
+          setAnalyzedImageText(checkImageResponse as string)
+        } else {
+          console.warn('Selected asset does not contain base64 data.');
+        }
+      }
+    } finally {
+      setIsLoading(false)
     }
-
-    setIsLoading(false)
   };
 
   return (
@@ -30,6 +51,7 @@ export default function StoryImagePicker() {
         onPress={pickImage}
         activeOpacity={1}
         className='flex-row self-start items-center gap-2 border border-border bg-white rounded-xl p-4'>
+        {/* If loading then show loading indicator else show image selection */}
         {isLoading ? (
           <ActivityIndicator />
         ) : (
@@ -40,6 +62,7 @@ export default function StoryImagePicker() {
         )}
       </TouchableOpacity>
       <View className='gap-2'>
+        {/* If image exists (the user chose an image) then show it */}
         {image && (
           <>
             <Text className='font-bold text-primary'>Sejt billede!</Text>
