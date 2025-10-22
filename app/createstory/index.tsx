@@ -27,6 +27,9 @@ export default function CreateStory() {
           <View className='gap-4'>
             <Text className='text-xl font-semibold'>Tag et billede af dit legetøj🧸</Text>
             <StoryImagePicker setAnalyzedImageText={setAnalyzedImageText} />
+            {analyzedImageText && (
+            <Text>{analyzedImageText}</Text>
+            )}
           </View>
           {/* Genre selection. Gets the setter state function */}
           <View className='gap-4'>
