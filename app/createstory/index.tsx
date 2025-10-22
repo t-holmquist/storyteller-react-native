@@ -1,4 +1,4 @@
-import { ScrollView, Text, View } from 'react-native'
+import { ActivityIndicator, ScrollView, Text, View } from 'react-native'
 import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { GenreSelector } from 'components/GenreSelector'
@@ -7,11 +7,42 @@ import { KeyWordInput } from 'components/KeyWordInput'
 import { VoiceSelector } from 'components/VoiceSelector'
 import { PrimaryButton } from 'components/PrimaryButton'
 import StoryImagePicker from 'components/StoryImagePicker'
+import { generateStoryWithMistral } from 'data/mistralApi'
 
 export default function CreateStory() {
 
   const [genre, setGenre] = useState('')
   const [analyzedImageText, setAnalyzedImageText] = useState('')
+  // The final story
+  const [story, setStory] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
+
+
+  const handleGenerateStory = async () => {
+    setIsLoading(true)
+
+    // Check if we got any data to generate a story or else cancel
+    if (!genre && !analyzedImageText) {
+      console.log('No genre or analyzed image')
+      return
+    }
+
+    try {
+      // Generate story with genre and analyzed image text
+      const story = await generateStoryWithMistral(genre, analyzedImageText)
+
+      // Sets the story so that it can be rendered dynamically
+      setStory(story as string)
+
+    } catch (error) {
+      console.log('Error generating story' + error)
+
+    } finally {
+      setIsLoading(false)
+    }
+
+  }
+
 
   return (
     <SafeAreaView edges={['bottom']}>
@@ -27,9 +58,6 @@ export default function CreateStory() {
           <View className='gap-4'>
             <Text className='text-xl font-semibold'>Tag et billede af dit legetøj🧸</Text>
             <StoryImagePicker setAnalyzedImageText={setAnalyzedImageText} />
-            {analyzedImageText && (
-            <Text>{analyzedImageText}</Text>
-            )}
           </View>
           {/* Genre selection. Gets the setter state function */}
           <View className='gap-4'>
@@ -51,7 +79,19 @@ export default function CreateStory() {
             <Text className='text-xl font-semibold'>Vælg stemmen til oplæsning🎤</Text>
             <VoiceSelector />
           </View>
-          <PrimaryButton text='Lav din historie' />
+          {/* Generate story button */}
+          {isLoading ? (
+            <ActivityIndicator />
+          ) : (
+            <>
+              <PrimaryButton
+                onPress={handleGenerateStory}
+                text='Lav din historie' />
+            </>
+          )}
+          {story && (
+            <Text>{story}</Text>
+          )}
         </View>
       </ScrollView>
     </SafeAreaView>

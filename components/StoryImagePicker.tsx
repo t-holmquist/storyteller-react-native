@@ -9,9 +9,12 @@ export default function StoryImagePicker(
 ) {
   const [image, setImage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isImageAnalyzed, setIsImageAnalyzed] = useState<boolean>(false);
 
   const pickImage = async () => {
     setIsLoading(true)
+    // Set analyzed image false on call if the user tries to upload a new image and one is already loaded
+    setIsImageAnalyzed(false)
 
     try {
       // No permissions request is necessary for launching the image library
@@ -36,6 +39,7 @@ export default function StoryImagePicker(
           const checkImageResponse = await CheckImage(base64);
           // Set the analyzedimage state so that the createstory component can use it to create the story
           setAnalyzedImageText(checkImageResponse as string)
+          setIsImageAnalyzed(true)
         } else {
           console.warn('Selected asset does not contain base64 data.');
         }
@@ -53,7 +57,10 @@ export default function StoryImagePicker(
         className='flex-row self-start items-center gap-2 border border-border bg-white rounded-xl p-4'>
         {/* If loading then show loading indicator else show image selection */}
         {isLoading ? (
-          <ActivityIndicator />
+          <>
+            <Text className='font-semibold'>Analyserer billedet...</Text>
+            <ActivityIndicator />
+          </>
         ) : (
           <>
             <Image source={require('../assets/icons/image.png')} />
@@ -63,7 +70,7 @@ export default function StoryImagePicker(
       </TouchableOpacity>
       <View className='gap-2'>
         {/* If image exists (the user chose an image) then show it */}
-        {image && (
+        {image && isImageAnalyzed && (
           <>
             <Text className='font-bold text-primary'>Sejt billede!</Text>
             <Image source={{ uri: image }} className='w-80 h-80 rounded-xl border border-accent' />

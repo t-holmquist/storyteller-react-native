@@ -5,16 +5,23 @@ import { Mistral } from '@mistralai/mistralai';
 // ONLY FOR LOCAL DEVELOPMENT - EXPO DOCS STATES THAT THIS KEY WILL BE VISIBLE IN PLAIN TEXT IN THE COMPILED APP
 const client = new Mistral({ apiKey: process.env.EXPO_PUBLIC_MISTRAL_API_KEY });
 
-export async function mistralTest() {
+export async function generateStoryWithMistral(genre: string, analyzedImageText: string) {
 
     // Sends an array of chat messages to mistral
     const chatResponse = await client.chat.complete({
         model: "mistral-large-latest",
-        messages: [{ role: 'user', content: 'What is the best French cheese?' }]
+        messages: [
+            {
+                role: 'user', content:
+                `Skriv en børnehistorie baseret på inputtet. Den skal maksimalt være 110 ord lang.
+                Du skal overholde følgende: Genren skal være ${genre}. Historien skal
+                tage udgangspunkt i følgende beskrivelse af et billede, som et barn gerne vil have
+                skal indgå i historien som et centralt element: ${analyzedImageText}.` },
+        ]
     });
 
-    // Logs the response -> Later this should be returned
-    console.log('Chat:', chatResponse.choices?.[0]?.message?.content);
+    // Returns the response
+    return chatResponse.choices?.[0]?.message?.content
 
 }
 
