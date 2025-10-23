@@ -12,9 +12,10 @@ import { generateStoryWithMistral } from 'data/mistralApi'
 export default function CreateStory() {
 
   const [genre, setGenre] = useState('')
-  const [analyzedImageText, setAnalyzedImageText] = useState('')
+  const [analysedImageText, setAnalysedImageText] = useState('')
   // The final story
-  const [story, setStory] = useState('')
+  const [storyTitle, setStoryTitle] = useState('')
+  const [storyDescription, setStoryDescription] = useState('')
   const [isLoading, setIsLoading] = useState(false)
 
 
@@ -22,17 +23,24 @@ export default function CreateStory() {
     setIsLoading(true)
 
     // Check if we got any data to generate a story or else cancel
-    if (!genre && !analyzedImageText) {
+    if (!genre && !analysedImageText) {
       console.log('No genre or analyzed image')
       return
     }
 
     try {
       // Generate story with genre and analyzed image text
-      const story = await generateStoryWithMistral(genre, analyzedImageText)
+      const jsonStory = await generateStoryWithMistral(genre, analysedImageText)
 
-      // Sets the story so that it can be rendered dynamically
-      setStory(story as string)
+      // Parsing the story JSON and setting the story title and description
+      if (jsonStory) {
+        // Typescript is confused that the mistral api does indeed return json and not a string.
+        const storyAsJsObject = await JSON.parse(jsonStory as any)
+
+        // Sets the title and description from js object
+        setStoryTitle(storyAsJsObject.titel)
+        setStoryDescription(storyAsJsObject.historie)
+      }
 
     } catch (error) {
       console.log('Error generating story' + error)
@@ -57,7 +65,7 @@ export default function CreateStory() {
           {/* Image picker section */}
           <View className='gap-4'>
             <Text className='text-xl font-semibold'>Tag et billede af dit legetøj🧸</Text>
-            <StoryImagePicker setAnalyzedImageText={setAnalyzedImageText} />
+            <StoryImagePicker setAnalysedImageText={setAnalysedImageText} />
           </View>
           {/* Genre selection. Gets the setter state function */}
           <View className='gap-4'>
@@ -89,8 +97,11 @@ export default function CreateStory() {
                 text='Lav din historie' />
             </>
           )}
-          {story && (
-            <Text>{story}</Text>
+          {storyTitle && storyDescription && (
+            <>
+              <Text>{storyTitle}</Text>
+              <Text>{storyDescription}</Text>
+            </>
           )}
         </View>
       </ScrollView>

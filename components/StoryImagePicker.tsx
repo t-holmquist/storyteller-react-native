@@ -4,22 +4,23 @@ import * as ImagePicker from 'expo-image-picker';
 import { CheckImage } from 'data/mistralApi';
 
 export default function StoryImagePicker(
-  { setAnalyzedImageText }:
-    { setAnalyzedImageText: React.Dispatch<React.SetStateAction<string>> }
+  { setAnalysedImageText }:
+    { setAnalysedImageText: React.Dispatch<React.SetStateAction<string>> }
 ) {
   const [image, setImage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [isImageAnalyzed, setIsImageAnalyzed] = useState<boolean>(false);
+  const [isFinishedAnalysing, setIsFinishedAnalysing] = useState<boolean>(false);
+  const [isAnalysingImage, setIsAnalysingImage] = useState<boolean>(false);
 
   const pickImage = async () => {
     setIsLoading(true)
-    // Set analyzed image false on call if the user tries to upload a new image and one is already loaded
-    setIsImageAnalyzed(false)
+    // Set is finished analysing image false on call if the user tries to upload a new image and one is already loaded
+    setIsFinishedAnalysing(false)
 
     try {
       // No permissions request is necessary for launching the image library
       let result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ['images', 'videos'],
+        mediaTypes: ['images'],
         allowsEditing: true,
         // Get the image in base64 format so that we can call mistral vision model
         // Which expect that format
@@ -36,16 +37,19 @@ export default function StoryImagePicker(
         // Give the Mistral vision model function "CheckImage" the base64 image to return its content
         const base64 = result.assets[0].base64;
         if (typeof base64 === 'string') {
+          // Now it analyses the image
+          setIsAnalysingImage(true)
           const checkImageResponse = await CheckImage(base64);
-          // Set the analyzedimage state so that the createstory component can use it to create the story
-          setAnalyzedImageText(checkImageResponse as string)
-          setIsImageAnalyzed(true)
+          // Gives the analysed image to create story
+          setAnalysedImageText(checkImageResponse as string)
+          setIsFinishedAnalysing(true)
         } else {
           console.warn('Selected asset does not contain base64 data.');
         }
       }
     } finally {
       setIsLoading(false)
+      setIsAnalysingImage(false)
     }
   };
 
@@ -58,8 +62,10 @@ export default function StoryImagePicker(
         {/* If loading then show loading indicator else show image selection */}
         {isLoading ? (
           <>
-            <Text className='font-semibold'>Analyserer billedet...</Text>
             <ActivityIndicator />
+            {isAnalysingImage && (
+                <Text className='font-semibold'>Analyserer billedet...</Text>
+            )}
           </>
         ) : (
           <>
@@ -70,7 +76,7 @@ export default function StoryImagePicker(
       </TouchableOpacity>
       <View className='gap-2'>
         {/* If image exists (the user chose an image) then show it */}
-        {image && isImageAnalyzed && (
+        {image && isFinishedAnalysing && (
           <>
             <Text className='font-bold text-primary'>Sejt billede!</Text>
             <Image source={{ uri: image }} className='w-80 h-80 rounded-xl border border-accent' />

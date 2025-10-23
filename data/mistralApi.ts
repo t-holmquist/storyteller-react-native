@@ -13,11 +13,16 @@ export async function generateStoryWithMistral(genre: string, analyzedImageText:
         messages: [
             {
                 role: 'user', content:
-                `Skriv en børnehistorie baseret på inputtet. Den skal maksimalt være 110 ord lang.
-                Du skal overholde følgende: Genren skal være ${genre}. Historien skal
-                tage udgangspunkt i følgende beskrivelse af et billede, som et barn gerne vil have
-                skal indgå i historien som et centralt element: ${analyzedImageText}.` },
-        ]
+                    `Skriv første kapitel af en børnehistorie på dansk. Den skal maksimalt være 110 ord lang.
+                Du skal overholde følgende: Genren skal være ${genre}. Du skal lave en title til historien på maks 4 ord. 
+                Du skal returne et output i dette specifikke JSON format: 
+                {"titel": "Titlen her",
+                "historie": "Historien her"}. Historien skal tage udgangspunkt i følgende beskrivelse af et billede, som et barn gerne vil have
+                skal indgå i historien som et centralt element. Her er beskrivelsen: ${analyzedImageText}.`
+            },
+        ],
+        // Gets the response as JSON instead of string, allowing us to get the title and story separately
+        responseFormat: {type: 'json_object'},
     });
 
     // Returns the response
