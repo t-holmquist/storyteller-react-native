@@ -42,6 +42,7 @@ export default function Home() {
             text="Lav en historie"
           />
         </View>
+
       </ScrollView>
     </SafeAreaView>
   )
