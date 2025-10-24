@@ -1,18 +1,17 @@
 import OpenAI from "openai";
 import { Buffer } from 'buffer';
 
-
 const openai = new OpenAI({
     apiKey: process.env.EXPO_PUBLIC_OPENAI_API_KEY
 });
 
-export const getAudioFromOpenai = async () => {
+export const getAudioFromOpenai = async (story: string) => {
 
     // Gets a blob object back from openai
     const mp3 = await openai.audio.speech.create({
         model: "gpt-4o-mini-tts",
         voice: "shimmer",
-        input: "I dag er en dejlig dag",
+        input: story,
         instructions: "Speak in danish",
     });
 
@@ -26,5 +25,3 @@ export const getAudioFromOpenai = async () => {
     return dataUri;
 
 }
-
-
