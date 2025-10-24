@@ -9,11 +9,8 @@ export const PopupOverlay = (
 
 ) => {
 
-  console.log(imageUri)
-
-
   return (
-    <View className="absolute inset-0 bg-white py-4 items-center z-50">
+    <View className="absolute inset-0 bg-white items-center z-50">
       {/* Indholdet i popup'en */}
       <View className="p-4 gap-3">
         <View className="h-80">
