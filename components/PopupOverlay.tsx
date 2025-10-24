@@ -1,7 +1,6 @@
 import React from "react";
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import AudioPlayer from "./Audioplayer";
-import { IMAGES } from "data/images";
 
 export const PopupOverlay = (
   { storyTitle, storyDescription, onPress, imageUri }:
@@ -32,7 +31,7 @@ export const PopupOverlay = (
           </TouchableOpacity>
 
           <AudioPlayer
-            story="Jeg er en lille frø - der bor i en lille grøn annedam i Nordjylland - jeg kan godt lide at svømme hele dagen"
+            story={storyDescription}
           />
         </View>
 
