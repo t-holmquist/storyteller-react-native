@@ -4,8 +4,10 @@ import * as ImagePicker from 'expo-image-picker';
 import { CheckImage } from 'data/mistralApi';
 
 export default function StoryImagePicker(
-  { setAnalysedImageText }:
-    { setAnalysedImageText: React.Dispatch<React.SetStateAction<string>> }
+  { setAnalysedImageText, setImageUri }:
+    { setAnalysedImageText: React.Dispatch<React.SetStateAction<string>>,
+      setImageUri: React.Dispatch<React.SetStateAction<string>>
+     }
 ) {
   const [image, setImage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -32,6 +34,8 @@ export default function StoryImagePicker(
       // If the user succesfully chose an image then set the image uri
       if (!result.canceled) {
         setImage(result.assets[0].uri);
+        // Send the image to create story
+        setImageUri(result.assets[0].uri)
 
         // CALLS THE MISTRAL VISION MODEL HERE
         // Give the Mistral vision model function "CheckImage" the base64 image to return its content

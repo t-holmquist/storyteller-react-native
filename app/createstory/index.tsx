@@ -15,12 +15,14 @@ export default function CreateStory() {
   // State from child components to create story
   const [genre, setGenre] = useState('')
   const [analysedImageText, setAnalysedImageText] = useState('')
+  // Image from the imagepicker to create story
+  const [imageUri, setImageUri] = useState('')
   // The final story
   const [storyTitle, setStoryTitle] = useState('')
   const [storyDescription, setStoryDescription] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   // Popupoverlay state
-  const [isPopUpVisible, setIsPopUpVisible] = useState(true)
+  const [isPopUpVisible, setIsPopUpVisible] = useState(false)
 
 
   const handleGenerateStory = async () => {
@@ -65,8 +67,9 @@ export default function CreateStory() {
       {isPopUpVisible && (
         <PopupOverlay
           onPress={() => setIsPopUpVisible(false)}
-          message="Her kan du vise hvad som helst"
-          title="Den gyldne sværd"
+          storyTitle={storyTitle}
+          storyDescription={storyDescription}
+          imageUri={imageUri}
         />
       )}
       <ScrollView className='mb-20'>
@@ -80,7 +83,10 @@ export default function CreateStory() {
           {/* Image picker section */}
           <View className='gap-4'>
             <Text className='text-xl font-semibold'>Tag et billede af dit legetøj🧸</Text>
-            <StoryImagePicker setAnalysedImageText={setAnalysedImageText} />
+            <StoryImagePicker 
+              setImageUri={setImageUri} 
+              setAnalysedImageText={setAnalysedImageText} 
+              />
           </View>
           {/* Genre selection. Gets the setter state function */}
           <View className='gap-4'>
