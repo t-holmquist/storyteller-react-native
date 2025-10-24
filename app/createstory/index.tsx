@@ -118,12 +118,6 @@ export default function CreateStory() {
                 text='Lav din historie' />
             </>
           )}
-          {storyTitle && storyDescription && (
-            <>
-              <Text>{storyTitle}</Text>
-              <Text>{storyDescription}</Text>
-            </>
-          )}
         </View>
       </ScrollView>
     </SafeAreaView>
