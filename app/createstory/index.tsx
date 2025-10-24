@@ -8,15 +8,19 @@ import { VoiceSelector } from 'components/VoiceSelector'
 import { PrimaryButton } from 'components/PrimaryButton'
 import StoryImagePicker from 'components/StoryImagePicker'
 import { generateStoryWithMistral } from 'data/mistralApi'
+import { PopupOverlay } from 'components/PopupOverlay'
 
 export default function CreateStory() {
 
+  // State from child components to create story
   const [genre, setGenre] = useState('')
   const [analysedImageText, setAnalysedImageText] = useState('')
   // The final story
   const [storyTitle, setStoryTitle] = useState('')
   const [storyDescription, setStoryDescription] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+  // Popupoverlay state
+  const [isPopUpVisible, setIsPopUpVisible] = useState(true)
 
 
   const handleGenerateStory = async () => {
@@ -40,6 +44,9 @@ export default function CreateStory() {
         // Sets the title and description from js object
         setStoryTitle(storyAsJsObject.titel)
         setStoryDescription(storyAsJsObject.historie)
+
+        // Show popup if we have generated a story
+        setIsPopUpVisible(true)
       }
 
     } catch (error) {
@@ -54,6 +61,14 @@ export default function CreateStory() {
 
   return (
     <SafeAreaView edges={['bottom']}>
+      {/* Popup-komponent */}
+      {isPopUpVisible && (
+        <PopupOverlay
+          onPress={() => setIsPopUpVisible(false)}
+          message="Her kan du vise hvad som helst"
+          title="Den gyldne sværd"
+        />
+      )}
       <ScrollView className='mb-20'>
         <View className='min-h-full bg-bg-sand py-6 px-4 gap-6'>
           <View className='gap-3 mb-2'>

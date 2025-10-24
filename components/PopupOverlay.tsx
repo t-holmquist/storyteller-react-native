@@ -2,20 +2,12 @@ import React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import AudioPlayer from "./Audioplayer";
 
-type PopupOverlayProps = {
-  visible: boolean;
-  onClose: () => void;
-  title?: string;
-  message?: string;
-};
+export const PopupOverlay = (
+  {title, message, onPress} : 
+  // Typescript type definitions
+  {title: string, message: string, onPress: () => void}
 
-export const PopupOverlay: React.FC<PopupOverlayProps> = ({
-  visible,
-  onClose,
-  title = "Popup",
-  message = "Her kan du vise hvad som helst.",
-}) => {
-  if (!visible) return null;
+) => {
 
   return (
     <View className="absolute inset-0 bg-white justify-center items-center z-50">
@@ -26,7 +18,7 @@ export const PopupOverlay: React.FC<PopupOverlayProps> = ({
 
         <View className="flex-row items-center justify-between">
           <TouchableOpacity
-            onPress={onClose}
+          onPress={onPress}
             className="bg-black rounded-lg w-28 h-12 justify-center"
           >
             <Text className="text-white font-bold text-center">Luk</Text>

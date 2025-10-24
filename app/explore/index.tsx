@@ -12,7 +12,8 @@ import { PrimaryButton } from 'components/PrimaryButton'
 
 
 export default function Explore() {
-  const [showPopup, setShowPopup] = useState(false);
+
+  
   return (
     <SafeAreaView edges={['bottom']}>
       <ScrollView className='mb-20'>
@@ -52,26 +53,10 @@ export default function Explore() {
               keyExtractor={(item) => item.id.toString()}
             />
           </View>
-
-
-          {/* Knap til at åbne popup */}
-          <PrimaryButton
-            text="Lav en historie"
-            onPress={() => setShowPopup(true)}
-          />
-
         </View>
 
         
       </ScrollView>
-
-       {/* Popup-komponent */}
-          <PopupOverlay
-            visible={showPopup}
-            onClose={() => setShowPopup(false)}
-            message="Her kan du vise hvad som helst"
-            title="Den gyldne sværd"
-          />
     </SafeAreaView>
   )
 }
