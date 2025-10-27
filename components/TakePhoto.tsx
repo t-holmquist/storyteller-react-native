@@ -76,7 +76,7 @@ export default function TakePhoto(
                 ) : (
                     <>
                         <Image source={require('../assets/icons/camera.png')} />
-                        <Text className='font-semibold'>Tag et billede</Text>
+                        <Text>Tag et billede</Text>
                     </>
                 )}
             </TouchableOpacity>
