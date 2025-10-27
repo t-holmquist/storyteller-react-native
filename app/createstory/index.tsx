@@ -32,6 +32,7 @@ export default function CreateStory() {
     // Check if we got any data to generate a story or else cancel
     if (!genre && !analysedImageText) {
       console.log('No genre or analyzed image')
+      setIsLoading(false)
       return
     }
 
@@ -63,7 +64,7 @@ export default function CreateStory() {
 
 
   return (
-    <SafeAreaView edges={['bottom']}>
+    <SafeAreaView className='bg-bg-sand'  edges={['bottom']}>
       {/* Popup-komponent */}
       {isPopUpVisible && (
         <PopupOverlay

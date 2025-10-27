@@ -7,7 +7,7 @@ export const PrimaryButton = ({text, onPress, isLoading } : {text: string, onPre
       <TouchableOpacity
         activeOpacity={1}
         onPress={onPress}
-        className='bg-accent flex-row gap-2 rounded-full px-4 py-2 flex items-center self-center'>
+        className='bg-accent flex-row gap-2 rounded-full px-4 py-3 flex items-center self-center'>
       
         <Text className='text-white text-xl font-bold'>
           {text}

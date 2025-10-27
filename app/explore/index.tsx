@@ -1,21 +1,17 @@
-import { FlatList, ScrollView, Text, View, TouchableOpacity } from 'react-native'
-import React, { useState } from 'react'
+import { FlatList, ScrollView, Text, View } from 'react-native'
+import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { PREVIOUS_STORIES } from 'data/mockData'
 import { StoryCard } from 'components/StoryCard'
 import { KeyWordInput } from 'components/KeyWordInput'
 import { CategorySelector } from 'components/CategorySelector'
-import AudioPlayer from 'components/Audioplayer'
-
-import { PopupOverlay } from 'components/PopupOverlay'
-import { PrimaryButton } from 'components/PrimaryButton'
 
 
 export default function Explore() {
 
   
   return (
-    <SafeAreaView edges={['bottom']}>
+    <SafeAreaView className='bg-bg-green'  edges={['bottom']}>
       <ScrollView className='mb-20'>
         <View className='min-h-full bg-bg-green py-6 px-4 gap-6'>
 
