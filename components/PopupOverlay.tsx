@@ -22,7 +22,7 @@ export const PopupOverlay = (
         <View className="flex-row items-center justify-between">
           <TouchableOpacity
             onPress={onPress}
-            className="bg-black rounded-lg w-28 h-12 justify-center"
+            className="bg-black rounded-full w-28 h-12 justify-center"
           >
             <Text className="text-white font-bold text-center">Luk</Text>
           </TouchableOpacity>

@@ -52,7 +52,7 @@ export default function AudioPlayer({ story }: { story: string }) {
         {!audioSource && (
           <TouchableOpacity
           activeOpacity={1}
-            className="bg-black flex-row gap-2 rounded-lg p-3 w-30 items-center justify-center"
+            className="bg-black flex-row gap-2 rounded-full p-3 w-30 items-center justify-center"
             onPress={handleGetAudioSource}
           >
             <Text className="text-white font-bold">Oplæsning</Text>
@@ -66,7 +66,7 @@ export default function AudioPlayer({ story }: { story: string }) {
         {audioSource && !isLoading && (
           <TouchableOpacity
           activeOpacity={1}
-            className={`rounded-lg p-3 w-28 flex-row items-center justify-center bg-accent
+            className={`rounded-full p-3 w-28 flex-row items-center justify-center bg-accent
               }`}
             onPress={handlePlayAudio}
           >
