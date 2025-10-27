@@ -1,4 +1,4 @@
-import { ActivityIndicator, ScrollView, Text, View } from 'react-native'
+import { ActivityIndicator, ScrollView, Text, View, Image } from 'react-native'
 import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { GenreSelector } from 'components/GenreSelector'
@@ -9,6 +9,7 @@ import { PrimaryButton } from 'components/PrimaryButton'
 import StoryImagePicker from 'components/StoryImagePicker'
 import { generateStoryWithMistral } from 'data/mistralApi'
 import { PopupOverlay } from 'components/PopupOverlay'
+import TakePhoto from 'components/TakePhoto'
 
 export default function CreateStory() {
 
@@ -83,10 +84,22 @@ export default function CreateStory() {
           {/* Image picker section */}
           <View className='gap-4'>
             <Text className='text-xl font-semibold'>Tag et billede af dit legetøj🧸</Text>
-            <StoryImagePicker 
-              setImageUri={setImageUri} 
-              setAnalysedImageText={setAnalysedImageText} 
+            <View className='flex-row gap-2'>
+              <TakePhoto
+                setImageUri={setImageUri}
+                setAnalysedImageText={setAnalysedImageText}
               />
+              <StoryImagePicker
+                setImageUri={setImageUri}
+                setAnalysedImageText={setAnalysedImageText}
+              />
+            </View>
+            {imageUri && analysedImageText && (
+              <>
+                <Text className='font-bold text-primary'>Sejt billede!</Text>
+                <Image source={{ uri: imageUri }} className='w-80 h-80 rounded-xl border border-accent' />
+              </>
+            )}
           </View>
           {/* Genre selection. Gets the setter state function */}
           <View className='gap-4'>
@@ -108,16 +121,11 @@ export default function CreateStory() {
             <Text className='text-xl font-semibold'>Vælg stemmen til oplæsning🎤</Text>
             <VoiceSelector />
           </View>
-          {/* Generate story button */}
-          {isLoading ? (
-            <ActivityIndicator />
-          ) : (
-            <>
-              <PrimaryButton
-                onPress={handleGenerateStory}
-                text='Lav din historie' />
-            </>
-          )}
+          {/* Generate story button. Gets the loading state to show spinner when creating story */}
+          <PrimaryButton
+            onPress={handleGenerateStory}
+            isLoading={isLoading}
+            text='Lav din historie' />
         </View>
       </ScrollView>
     </SafeAreaView>

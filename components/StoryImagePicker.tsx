@@ -9,15 +9,11 @@ export default function StoryImagePicker(
       setImageUri: React.Dispatch<React.SetStateAction<string>>
      }
 ) {
-  const [image, setImage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [isFinishedAnalysing, setIsFinishedAnalysing] = useState<boolean>(false);
   const [isAnalysingImage, setIsAnalysingImage] = useState<boolean>(false);
 
   const pickImage = async () => {
     setIsLoading(true)
-    // Set is finished analysing image false on call if the user tries to upload a new image and one is already loaded
-    setIsFinishedAnalysing(false)
 
     try {
       // No permissions request is necessary for launching the image library
@@ -33,7 +29,6 @@ export default function StoryImagePicker(
 
       // If the user succesfully chose an image then set the image uri
       if (!result.canceled) {
-        setImage(result.assets[0].uri);
         // Send the image to create story
         setImageUri(result.assets[0].uri)
 
@@ -46,7 +41,6 @@ export default function StoryImagePicker(
           const checkImageResponse = await CheckImage(base64);
           // Gives the analysed image to create story
           setAnalysedImageText(checkImageResponse as string)
-          setIsFinishedAnalysing(true)
         } else {
           console.warn('Selected asset does not contain base64 data.');
         }
@@ -74,19 +68,10 @@ export default function StoryImagePicker(
         ) : (
           <>
             <Image source={require('../assets/icons/image.png')} />
-            <Text className='font-semibold'>Vælg dit billede</Text>
+            <Text className='font-semibold'>Vælg et billede</Text>
           </>
         )}
       </TouchableOpacity>
-      <View className='gap-2'>
-        {/* If image exists (the user chose an image) then show it */}
-        {image && isFinishedAnalysing && (
-          <>
-            <Text className='font-bold text-primary'>Sejt billede!</Text>
-            <Image source={{ uri: image }} className='w-80 h-80 rounded-xl border border-accent' />
-          </>
-        )}
-      </View>
     </View>
   );
 }
